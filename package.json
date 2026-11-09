@@ -1,0 +1,39 @@
+{
+  "name": "dopplercrack",
+  "version": "0.5.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone aircraft-audio geolocation research lab with a bounded C search engine",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "node server/app.mjs --dev",
+    "build": "tsc --noEmit && vite build",
+    "start": "node server/app.mjs",
+    "native:install": "node scripts/install-doppler.mjs",
+    "doppler:install": "node scripts/install-doppler.mjs",
+    "doppler:local": "node server/app.mjs",
+    "doppler:check": "node scripts/check-doppler-optimization.mjs",
+    "test": "node --test server/*.test.mjs",
+    "check": "node scripts/check-doppler.mjs --http",
+    "check:discovery": "node scripts/check-discovery.mjs",
+    "check:ui": "node scripts/check-ui.mjs",
+    "check:reference": "node scripts/check-reference-audio.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "1.31.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "playwright-core": "1.63.0",
+    "typescript": "5.9.3",
+    "vite": "8.0.13"
+  }
+}

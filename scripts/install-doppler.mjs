@@ -1,0 +1,10 @@
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
+const path = fileURLToPath(new URL("./install-doppler.sh", import.meta.url));
+const windows = process.platform === "win32";
+const match = path.replaceAll("\\", "/").match(/^([A-Za-z]):(\/.*)$/);
+if (windows && !match) throw new Error("Use a WSL-accessible checkout");
+const args = windows ? ["--exec", "bash", `/mnt/${match[1].toLowerCase()}${match[2]}`, ...process.argv.slice(2)] : [path, ...process.argv.slice(2)];
+const result = spawnSync(windows ? "wsl.exe" : "bash", args, { stdio: "inherit", windowsHide: true });
+if (result.error) throw result.error;
+process.exit(result.status ?? 1);
